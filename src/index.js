@@ -7,18 +7,15 @@ const dockerHub = "https://registry-1.docker.io";
 
 const routes = {
   // production
-  "docker.libcuda.so": dockerHub,
-  "quay.libcuda.so": "https://quay.io",
-  "gcr.libcuda.so": "https://gcr.io",
-  "k8s-gcr.libcuda.so": "https://k8s.gcr.io",
-  "k8s.libcuda.so": "https://registry.k8s.io",
-  "ghcr.libcuda.so": "https://ghcr.io",
-  "cloudsmith.libcuda.so": "https://docker.cloudsmith.io",
-  "ecr.libcuda.so": "https://public.ecr.aws",
-  "cloudflare-docker-proxy.z-l-8.workers.dev": dockerHub,
-  "dockerproxy.zltop.cn": dockerHub,
-  // staging
-  "docker-staging.libcuda.so": dockerHub,
+  "docker": dockerHub,
+  "quay": "https://quay.io",
+  "gcr": "https://gcr.io",
+  "k8s-gcr": "https://k8s.gcr.io",
+  "k8s": "https://registry.k8s.io",
+  "ghcr": "https://ghcr.io",
+  "cloudsmith": "https://docker.cloudsmith.io",
+  "ecr": "https://public.ecr.aws",
+  "docker-staging": dockerHub,
 };
 
 function routeByHosts(host) {
@@ -33,7 +30,7 @@ function routeByHosts(host) {
 
 async function handleRequest(request) {
   const url = new URL(request.url);
-  const upstream = routeByHosts(url.hostname);
+  const upstream = routeByHosts(url.hostname.split(".")[0]);
   if (upstream === "") {
     return new Response(
       JSON.stringify({
