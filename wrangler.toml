@@ -20,6 +20,7 @@ routes = [
   { pattern = "k8s.dockerproxy.zltop.cn", custom_domain = true },
   { pattern = "ghcr.dockerproxy.zltop.cn", custom_domain = true },
   { pattern = "cloudsmith.dockerproxy.zltop.cn", custom_domain = true },
+ { pattern = "*.cf.zltop.cn", custom_domain = true },
 ]
 
 [env.production.vars]
